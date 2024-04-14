@@ -50,94 +50,85 @@ fun SignUpScreen(navController: NavController) {
                 contentColor = Color.White,
                 elevation = 5.dp
             )
-        }, content = {
+        }, content = { its ->
             Column(
                 modifier = Modifier
-                    .padding(it)
-                    .fillMaxSize()
-                  ,
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(its)
+                    .padding(16.dp)
             ) {
-                Text(
-                    text = "Content of the page",
-                    fontSize = 30.sp,
-                    color = Color.White
+
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    singleLine = true,
+                    label = { Text("Name") },
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.fillMaxWidth(),
+                    isError = showError && name.isEmpty()
                 )
+                Spacer(modifier = Modifier.height(16.dp))
+                OutlinedTextField(
+                    value = lastName,
+                    onValueChange = { lastName = it },
+                    singleLine = true,
+                    label = { Text("Last Name") },
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.fillMaxWidth(),
+                    isError = showError && lastName.isEmpty()
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    label = { Text("Email") },
+                    singleLine = true,
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.fillMaxWidth(),
+                    isError = showError && email.isEmpty()
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                OutlinedTextField(
+                    value = address,
+                    onValueChange = { address = it },
+                    label = { Text("Address") },
+                    singleLine = true,
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.fillMaxWidth(),
+                    isError = showError && address.isEmpty()
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    label = { Text("Password") },
+                    singleLine = true,
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.fillMaxWidth(),
+                    isError = showError && password.isEmpty()
+                )
+
+
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(
+                    onClick = {
+                        showError = name.isEmpty() || lastName.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty()
+                        if (!showError) {
+                            navController.navigate("otp")
+                        }
+                    },
+                    shape = RoundedCornerShape(8.dp), // Square rounded corners
+
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                        .fillMaxWidth().padding(horizontal = 60.dp, vertical = 10.dp)
+
+                ) {
+                    Text("Sign Up",fontSize = 14.sp, color = Color.White, fontWeight = FontWeight.W600,
+                        modifier = Modifier.padding(10.dp))
+                }
             }
 
         })
 
 
-    Column(modifier = Modifier.padding(16.dp)) {
-        Spacer(modifier = Modifier.height(50.dp))
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            singleLine = true,
-            label = { Text("Name") },
-            shape = RoundedCornerShape(50),
-            modifier = Modifier.fillMaxWidth(),
-            isError = showError && name.isEmpty()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = lastName,
-            onValueChange = { lastName = it },
-            singleLine = true,
-            label = { Text("Last Name") },
-            shape = RoundedCornerShape(50),
-            modifier = Modifier.fillMaxWidth(),
-            isError = showError && lastName.isEmpty()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-             singleLine = true,
-            shape = RoundedCornerShape(50),
-            modifier = Modifier.fillMaxWidth(),
-            isError = showError && email.isEmpty()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-         OutlinedTextField(
-            value = address,
-            onValueChange = { address = it },
-            label = { Text("Address") },
-             singleLine = true,
-            shape = RoundedCornerShape(50),
-            modifier = Modifier.fillMaxWidth(),
-            isError = showError && address.isEmpty()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-             singleLine = true,
-            shape = RoundedCornerShape(50),
-            modifier = Modifier.fillMaxWidth(),
-            isError = showError && password.isEmpty()
-        )
 
-
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = {
-               // showError = name.isEmpty() || lastName.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty()
-               // if (!showError) {
-                    navController.navigate("otp")
-               // }
-            },
-            shape = RoundedCornerShape(8.dp), // Square rounded corners
-
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                .fillMaxWidth().padding(horizontal = 60.dp, vertical = 10.dp)
-
-        ) {
-            Text("Sign Up",fontSize = 14.sp, color = Color.White, fontWeight = FontWeight.W600,
-                modifier = Modifier.padding(10.dp))
-        }
-    }
 }
